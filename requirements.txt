@@ -3,3 +3,7 @@ numpy
 matplotlib
 seaborn
 yfinance
+scikit-learn 
+tensorflow
+statsmodel
+flask
