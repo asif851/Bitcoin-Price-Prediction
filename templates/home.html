@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Close Price Prediction</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #222;
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: 600;
+            color: #444;
+            display: block;
+            text-align: left;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #007bff;
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        button {
+            grid-column: span 2;
+            padding: 12px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f5e9;
+            border: 1px solid #a5d6a7;
+            border-radius: 6px;
+            color: #2e7d32;
+            font-size: 18px;
+        }
+
+        .market-data {
+            display: inline-block;
+            margin-top: 15px;
+            text-decoration: none;
+            color: white;
+            background: #28a745;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .market-data:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bitcoin Close Price Prediction</h1>
+        <form method="POST" action="/predict">
+            <div>
+                <label for="Open">Open:</label>
+                <input type="number" id="Open" name="Open" required>
+            </div>
+
+            <div>
+                <label for="High">High:</label>
+                <input type="number" step="0.01" id="High" name="High" required>
+            </div>
+
+            <div>
+                <label for="Low">Low:</label>
+                <input type="number" step="0.01" id="Low" name="Low" required>
+            </div>
+
+            <div>
+                <label for="Volume">Volume:</label>
+                <input type="number" id="Volume" name="Volume" required>
+            </div>
+
+            <div>
+                <label for="Month">Month:</label>
+                <input type="number" id="Month" name="Month" required>
+            </div>
+
+            <div>
+                <label for="7-day-MA">7-Day Moving Average:</label>
+                <input type="number" step="0.01" id="7-day-MA" name="7-day-MA" required>
+            </div>
+            
+
+            <div>
+                <label for="25-day-MA">25-Day Moving Average:</label>
+                <input type="number" step="0.01" id="25-day-MA" name="25-day-MA" required>
+            </div>
+            
+            
+
+            <button type="submit">Predict Close</button>
+        </form>
+        
+     
+            <a href="https://www.binance.com/en/trade/BTC_USDT?type=spot" target="_blank" class="market-data">Get Market Data</a>
+      
+        
+        {% if prediction %}
+        <div class="result">
+            Predicted Close Price: {{ prediction[0] }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
